@@ -1,4 +1,5 @@
 #include<iostream>
+#include<set>
 using namespace std;
 struct point
 {
@@ -8,14 +9,25 @@ struct point
 };
 bool check(int a,int b,int c,point p[],int n)
 {
+    set<int> dic1;
+    set<int> dic2;
+    set<int> dic3;
     for(int i=0;i<n;i++)
     {
-        if(a+b*p[i].x+c*p[i].y!=0)
+        if(a+b*p[i].x+c*p[i].y>0)
         {
-            return false;
+            dic1.insert(p[i].type);
         }
+        else if(a+b*p[i].x+c*p[i].y<0)
+        {
+            dic2.insert(p[i].type);
+        }
+        else
+            dic3.insert(p[i].type);
     }
-    return true;
+    if(dic1.size()<=1&&dic2.size()<=1&&dic3.size()<=1)
+        return  true;
+    return false;
 }
 int main()
 {
@@ -28,7 +40,7 @@ int main()
         scanf("%d %d %c",&p[i].x,&p[i].y,&c);
         if(c=='A')
             p[i].type=0;
-        else 
+        else
             p[i].type=1;
     }
     for(int i=0;i<m;i++)
@@ -42,7 +54,7 @@ int main()
         else
         {
             cout<<"No"<<endl;
-        } 
+        }
     }
     return 0;
 }
