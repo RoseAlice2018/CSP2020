@@ -21,7 +21,7 @@ int main()
 {
     int n,m; //n points m query
     cin>>n>>m;
-    point p[100];
+    point p[n+10];
     for(int i=0;i<n;i++)
     {
         char c;
